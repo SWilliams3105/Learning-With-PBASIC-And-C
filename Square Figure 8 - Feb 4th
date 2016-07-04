@@ -1,0 +1,175 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+DEBUG "Before subroutine"
+counter VAR  Word
+ DO
+ PAUSE 2000
+  GOSUB driveStraight
+
+   HIGH 15
+  PAUSE 20
+  LOW 15
+  PAUSE 20
+  HIGH 15
+  PAUSE 20
+  LOW 15
+  PAUSE 20
+  GOSUB leftTurn
+
+  GOSUB OneBlock
+
+  HIGH 15
+  PAUSE 20
+  LOW 15
+  PAUSE 20
+  HIGH 15
+  PAUSE 20
+  LOW 15
+  PAUSE 20
+  GOSUB leftTurn
+
+  GOSUB oneblock
+
+   HIGH 15
+  PAUSE 20
+  LOW 15
+  PAUSE 20
+  HIGH 15
+  PAUSE 20
+  LOW 15
+  PAUSE 20
+  GOSUB leftTurn
+
+  GOSUB leftCorrection
+
+  GOSUB correctionStraight
+
+   HIGH 14
+  PAUSE 20
+  LOW 14
+  PAUSE 20
+  HIGH 14
+  PAUSE 20
+  LOW 14
+  PAUSE 20
+
+  GOSUB rightTurn
+
+  GOSUB OneBlock
+
+   HIGH 14
+  PAUSE 20
+  LOW 14
+  PAUSE 20
+  HIGH 14
+  PAUSE 20
+  LOW 14
+  PAUSE 20
+  GOSUB rightTurn
+  GOSUB oneblock
+
+   HIGH 14
+  PAUSE 20
+  LOW 14
+  PAUSE 20
+  HIGH 14
+  PAUSE 20
+  LOW 14
+  PAUSE 20
+  GOSUB rightturn
+
+  LOOP
+
+
+
+
+
+
+  DO
+
+HIGH 14
+PAUSE 500
+LOW 14
+HIGH 15
+PAUSE 500
+LOW 15
+
+LOOP
+
+
+
+
+
+
+
+driveStraight: FOR counter = 1 TO 80
+DEBUG " Driving Straight!", CR
+               PULSOUT 12, 850
+               PULSOUT 13, 650
+               PAUSE 20
+
+               NEXT
+               RETURN
+
+OneBlock: FOR counter = 1 TO 40
+          DEBUG "Driving 1 Block!", CR
+          PULSOUT 12, 850
+          PULSOUT 13, 650
+          PAUSE 20
+          NEXT
+          RETURN
+
+correctionStraight: FOR counter = 1 TO 86
+          DEBUG "Correcting!", CR
+          PULSOUT 12, 850
+          PULSOUT 13, 650
+          PAUSE 20
+          NEXT
+          RETURN
+
+leftTurn: FOR counter = 1 TO 21
+DEBUG "Turning Left!", CR
+          PULSOUT 13, 650
+          PULSOUT 12, 650
+
+          NEXT
+          RETURN
+
+leftCorrection: FOR counter = 1 TO 2
+DEBUG "Turning Left!", CR
+          PULSOUT 13, 650
+          PULSOUT 12, 650
+
+          NEXT
+          RETURN
+
+
+
+
+rightTurn: FOR counter = 1 TO 19
+           DEBUG "Turning Right!", CR
+           PULSOUT 12, 850
+           PULSOUT 13, 850
+
+
+           NEXT
+           RETURN
+
+
+
+  GOSUB driveStraight
+  GOSUB leftTurn
+  GOSUB OneBlock
+  GOSUB leftTurn
+  GOSUB driveStraight
+  GOSUB rightTurn
+  GOSUB OneBlock
+  GOSUB rightTurn
+  GOSUB rightTurn
+
+
+
+
+
+
