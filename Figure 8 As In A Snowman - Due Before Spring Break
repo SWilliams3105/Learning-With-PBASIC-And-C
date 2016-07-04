@@ -1,0 +1,44 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+PAUSE 1500
+DEBUG "Program Running!"
+
+' ---------[Variables]------
+ForwardCount  VAR Byte
+Adjust        VAR Byte
+Right_Turn    VAR Byte
+
+DO                      'Maybe replace DO and LOOP with a FOR statement
+                        ' USE A DO WHILE CONDITION IS TRUE STATEMENT
+GOSUB FORWARD_PULSE
+GOSUB ADJUSTMENT
+IF ForwardCount = 100 THEN
+ENDIF
+LOOP
+
+
+
+'-------- [Subroutines] --------
+
+FORWARD_PULSE:
+  FOR ForwardCount = 0 TO 100
+    PULSOUT 13, 650
+    PULSOUT 12, 850
+    NEXT
+    RETURN
+
+ADJUSTMENT:
+  FOR Adjust = 0 TO 20
+      PULSOUT 13, 675
+      PULSOUT 12, 675
+    NEXT
+     RETURN
+
+Sharp_Right:
+FOR RIght_Turn = 0 TO 20
+PULSOUT 13, 850
+      PULSOUT 12, 850
+      PAUSE 20
+   NEXT
+   RETURN
