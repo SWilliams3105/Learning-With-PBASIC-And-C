@@ -1,0 +1,87 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+DEBUG "Program Running!"
+' ---------[Variables]------
+pulseCount  VAR Byte
+COUNTER     VAR Byte
+ForwardCount  VAR Byte
+
+' ---------[Initialization]------
+'FREQOUT 4, 500, 3000
+
+' -----[Main Routine]------
+
+PAUSE 500
+
+DO
+
+    FOR COUNTER = 1 TO 4
+    GOSUB FORWARD_PULSE
+  IF (IN5 = 0) OR (IN7 = 0) THEN
+    GOSUB BACK_UP
+    GOSUB TURN_LEFT
+    ENDIF
+    NEXT
+    'GOSUB PLAY_SOUND
+
+
+
+
+
+
+
+
+
+ ' IF (IN5 = 0) THEN
+  '  GOSUB BACK_UP
+   ' GOSUB TURN_RIGHT
+  'ELSEIF (IN7 = 0) THEN
+   ' GOSUB BACK_UP
+    'GOSUB TURN_LEFT
+  'ELSE
+   ' GOSUB FORWARD_PULSE
+   'ENDIF
+
+
+
+  ' -----[Subroutines]-------
+
+
+  FORWARD_PULSE:
+  FOR ForwardCount = 0 TO 5
+    PULSOUT 13, 650
+    PULSOUT 12, 850
+    NEXT
+    RETURN
+  TURN_LEFT:
+    FOR pulseCount = 0 TO 20
+      PULSOUT 13, 650
+      PULSOUT 12, 650
+      PAUSE 20
+    NEXT
+    RETURN
+  TURN_RIGHT:
+    FOR pulseCount = 0 TO 20
+      PULSOUT 13, 850
+      PULSOUT 12, 850
+
+      PAUSE 20
+   NEXT
+   RETURN
+
+ BACK_UP:
+  FOR pulseCount = 0 TO 40
+    PULSOUT 13, 850
+    PULSOUT 12, 650
+    PAUSE 20
+ NEXT
+ RETURN
+
+ ' PLAY_SOUND:
+  'FREQOUT 4, 5000, 3000
+  'PAUSE 20
+  'END
+  'RETURN
+
+  LOOP
