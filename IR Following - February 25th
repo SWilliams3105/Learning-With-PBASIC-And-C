@@ -1,0 +1,10 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+PAUSE 1000
+DEBUG "HELLO, IT IS WE!"
+DEBUG CR
+DEBUG "Seven times eleven is ", DEC 7 * 11 , CR
+DEBUG "Our names are ", 83, 101, 116, 104, " ", 87, 105, 108, 108, 105, 97, 109, 115, " ", 97, 110, 100, " ", 69, 114, 105, 99, " ", 82, 111, 76, 76, 105, 110, 115, " ", 74, 117, 110, 105, 111, 114
+
+END
