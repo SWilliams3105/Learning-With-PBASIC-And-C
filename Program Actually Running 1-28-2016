@@ -1,0 +1,16 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+PAUSE 1000
+
+DEBUG "Program Running!"
+
+counter VAR Byte
+
+FOR counter = 1 TO 37
+  PULSOUT 13,850                 '13 is the right wheel - This wheel must be above 750 to turn CCW
+  PAUSE 20
+  PULSOUT 12, 500                '12 is the left wheel - THis wheel must be below 750 to rutn CW
+  PAUSE 20
+NEXT
+
+END
