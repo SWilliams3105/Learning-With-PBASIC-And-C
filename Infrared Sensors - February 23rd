@@ -1,1 +1,80 @@
 
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+ '----- [Variables] -----
+ irDetectLeft VAR Bit
+ irDetectRight VAR Bit
+ pulseCount  VAR Byte
+ COUNTER     VAR Byte
+ ForwardCount  VAR Byte
+
+ DEBUG CLS,
+          "IR DETECTORS", CR,
+          "Left   Right", CR,
+          " ----  ----"
+
+ '------ [Main Routine] -------
+  DO
+    FREQOUT 8, 1, 38500
+    irDetectLeft = IN9
+    FREQOUT 2, 1, 38500
+    irDetectRight = IN0
+
+    GOSUB FORWARD_PULSE
+    IF (irDetectLeft = 0) THEN
+    GOSUB TURN_RIGHT
+    GOSUB FORWARD_PULSE
+    ELSEIF (irDetectRight = 0) THEN
+    GOSUB TURN_LEFT
+    GOSUB FORWARD_PULSE
+    ELSEIF (irDetectLeft = 0) & (irDetectRight = 0) THEN
+    GOSUB BACK_UP
+    GOSUB TURN_LEFT
+    ELSEIF (irDetectLeft = 1) & (irDetectRight = 1) THEN
+    GOSUB FORWARD_PULSE
+
+    ENDIF
+
+
+    DEBUG HOME, "irDetectLeft = ", BIN1 irDetectLeft
+    DEBUG CRSRXY, 2, 3, BIN1 irDetectLeft
+   DEBUG CRSRXY, 9, 3, BIN1 irDetectRight
+
+    PAUSE 100
+  LOOP
+
+
+  '--------- [Subroutines ]---------
+
+
+
+  FORWARD_PULSE:
+  FOR ForwardCount = 0 TO 20
+    PULSOUT 13, 650
+    PULSOUT 12, 850
+    NEXT
+    RETURN
+  TURN_LEFT:
+    FOR pulseCount = 0 TO 20
+      PULSOUT 13, 650
+      PULSOUT 12, 650
+      PAUSE 20
+    NEXT
+    RETURN
+  TURN_RIGHT:
+    FOR pulseCount = 0 TO 20
+      PULSOUT 13, 850
+      PULSOUT 12, 850
+
+      PAUSE 20
+   NEXT
+   RETURN
+
+ BACK_UP:
+  FOR pulseCount = 0 TO 40
+    PULSOUT 13, 850
+    PULSOUT 12, 650
+    PAUSE 20
+ NEXT
+ RETURN
