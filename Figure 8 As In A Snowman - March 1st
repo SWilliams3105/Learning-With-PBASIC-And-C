@@ -1,0 +1,65 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+PAUSE 500
+DEBUG "Program Running!"
+
+' ---------[Variables]------
+ForwardCount  VAR Byte
+Left_Adjust   VAR Byte
+Right_Adjust  VAR Byte
+Right_Turn    VAR Byte
+BigRoutineCounter VAR Byte
+SmallRoutineCounter VAR Byte
+SmallerRoutineCounter VAR Byte
+
+' ----------[Main Routine] ------
+
+  FOR BigRoutineCounter = 0 TO 61            ' This counter lets the program run smoothly.
+GOSUB FORWARD_PULSE
+GOSUB LEFT_ADJUSTMENT
+NEXT
+GOSUB SHARP_RIGHT_ADJUSTMENT
+FOR SmallerRoutineCounter = 0 TO 1
+GOSUB FORWARD_SMALL_STRAIGHT
+NEXT
+  FOR SmallRoutineCounter = 0 TO 32
+  GOSUB Forward_Pulse
+  GOSUB SMALLER_LEFT_ADJUSTMENT
+  NEXT
+  END
+'-------- [Subroutines] --------
+
+FORWARD_PULSE:
+  FOR ForwardCount = 0 TO 95
+      PULSOUT 13, 650
+      PULSOUT 12, 850
+      NEXT
+      RETURN
+FORWARD_SMALL_STRAIGHT:
+FOR SmallerRoutineCounter = 0 TO 10
+      PULSOUT 13, 650
+      PULSOUT 12, 850
+      NEXT
+      RETURN
+
+LEFT_ADJUSTMENT:
+  FOR Left_Adjust = 0 TO 10
+      PULSOUT 13, 650
+      PULSOUT 12, 650
+      NEXT
+      RETURN
+
+SMALLER_LEFT_ADJUSTMENT:
+  FOR Right_Adjust = 0 TO 15
+      PULSOUT 13, 650
+      PULSOUT 12, 650
+      NEXT
+      RETURN
+
+SHARP_RIGHT_ADJUSTMENT:
+  FOR SMALLROUTINECOUNTER = 0 TO 200
+      PULSOUT 13, 850
+      PULSOUT 12, 850
+      NEXT
+      RETURN
